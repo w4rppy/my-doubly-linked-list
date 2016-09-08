@@ -217,93 +217,96 @@ void		free_list_int(t_list *list)
   list_free(ptr_list, NULL);
 }
 
-/* int	main() */
-/* { */
-/*   t_ptr_list	ptr_lli; */
 
-/*   LIST_INIT_PTR(&(ptr_lli)); */
-/*   for (int i = 5; i > 0; i--) */
-/*     { */
-/*       t_list_list_int	*node_lli; */
-/*       node_lli = malloc(sizeof(*node_lli)); */
-/*       LIST_INIT_NODE(node_lli); */
-/*       LIST_INIT_PTR(&(node_lli->ptr_list_int)); */
-/*       for (int j = 5; j > 0; j--) */
-/* 	{ */
-/* 	  t_list_int *node_li = malloc(sizeof(*node_li)); */
-/* 	  LIST_INIT_NODE(node_li); */
-/* 	  node_li->value = j; */
-/* 	  LIST_PUSH_BACK(&(node_lli->ptr_list_int), node_li); */
-/* 	} */
-/*       LIST_PUSH_BACK(&ptr_lli, node_lli); */
-/*     } */
-/*   list_free(&(ptr_lli), &free_list_int); */
-/*   return 0; */
-/* } */
+int	main()
+{
+  t_ptr_list	ptr_lli;
 
-/* int	main() */
-/* { */
-/*   t_ptr_list	ptr_player; */
-/*   t_player	*player; */
-/*   int		i; */
-/*   int		j; */
-/*   t_list	*list; */
+  LIST_INIT_PTR(&(ptr_lli));
+  for (int i = 5; i > 0; i--)
+    {
+      t_list_list_int	*node_lli;
+      node_lli = malloc(sizeof(*node_lli));
+      LIST_INIT_NODE(node_lli);
+      LIST_INIT_PTR(&(node_lli->ptr_list_int));
+      for (int j = 5; j > 0; j--)
+	{
+	  t_list_int *node_li = malloc(sizeof(*node_li));
+	  LIST_INIT_NODE(node_li);
+	  node_li->value = j;
+	  LIST_PUSH_BACK(&(node_lli->ptr_list_int), node_li);
+	}
+      LIST_PUSH_BACK(&ptr_lli, node_lli);
+    }
+  list_free(&(ptr_lli), &free_list_int);
+  return 0;
+}
 
-/*   i = 0; */
+/*
+int	main()
+{
+  t_ptr_list	ptr_player;
+  t_player	*player;
+  int		i;
+  int		j;
+  t_list	*list;
 
-/*   LIST_INIT_PTR(&ptr_player); */
-/*   while (i < 10) */
-/*     { */
-/*       player = malloc(sizeof(*player)); */
-/*       LIST_INIT_PTR(&player->ptr_team); */
-/*       LIST_INIT_NODE(player); */
-/*       player->nb = i; */
-/*       LIST_PUSH_BACK(&ptr_player, player); */
-/*       j = 0; */
-/*       /\* while (j < 5) *\/ */
-/*       /\* 	{ *\/ */
-/*       /\* 	  player->team = malloc(sizeof(*(player->team))); *\/ */
-/*       /\* 	  LIST_INIT_NODE(player->team); *\/ */
-/*       /\* 	  player->team->nbt = j; *\/ */
-/*       /\* 	  LIST_PUSH_BACK(&(player->ptr_team), player->team); *\/ */
-/*       /\* 	  ++j; *\/ */
-/*       /\* 	} *\/ */
-/*       ++i; */
-/*     } */
-/*   list = ptr_player.head; */
-/*   t_list *tmp; */
-/*   while (list) */
-/*     { */
-/*       printf("%d-\n", (T_PLAYER(list))->nb); */
-/*       tmp = player->ptr_team.head; */
-/*       while (tmp) */
-/*       	{ */
-/*       	  printf("%d <<<==TOTO\n", (T_TEAM(list))->nbt); */
-/*       	  LIST_NEXT_NODE(tmp); */
-/*       	} */
-/*       LIST_NEXT_NODE(list); */
-/*     } */
-/*   printf("sizeof list %ld\n", list_lenght(&ptr_player)); */
+  i = 0;
 
-
-
-/*   /\* player = malloc(sizeof(*player)); *\/ */
-/*   /\* LIST_INIT_NODE(player); *\/ */
-/*   /\* int		k = 3; *\/ */
-/*   /\* player->nb = 42; *\/ */
-/*   /\* INSERT_IN_LIST(&ptr_player, player, &k, get_value); *\/ */
+  LIST_INIT_PTR(&ptr_player);
+  while (i < 10)
+    {
+      player = malloc(sizeof(*player));
+      LIST_INIT_PTR(&player->ptr_team);
+      LIST_INIT_NODE(player);
+      player->nb = i;
+      LIST_PUSH_BACK(&ptr_player, player);
+      j = 0;
+      while (j < 5)
+      	{
+      	  player->team = malloc(sizeof(*(player->team)));
+      	  LIST_INIT_NODE(player->team);
+      	  player->team->nbt = j;
+      	  LIST_PUSH_BACK(&(player->ptr_team), player->team);
+      	  ++j;
+      	}
+      ++i;
+    }
+  list = ptr_player.head;
+  t_list *tmp;
+  while (list)
+    {
+      printf("%d-\n", (T_PLAYER(list))->nb);
+      tmp = player->ptr_team.head;
+      while (tmp)
+      	{
+      	  printf("%d <<<==TOTO\n", (T_TEAM(list))->nbt);
+      	  LIST_NEXT_NODE(tmp);
+      	}
+      LIST_NEXT_NODE(list);
+    }
+  printf("sizeof list %ld\n", list_lenght(&ptr_player));
 
 
 
-/*   tmp = ptr_player.tail; */
-/*   while (tmp) */
-/*     { */
-/*       printf("\n%d-\n", ((t_player *)tmp)->nb); */
-/*       LIST_PREV_NODE(tmp); */
-/*     } */
+  player = malloc(sizeof(*player));
+  LIST_INIT_NODE(player);
+  int		k = 3;
+  player->nb = 42;
+  INSERT_IN_LIST(&ptr_player, player, &k, get_value);
 
-/*   /\* LIST_FREE(&ptr_player); *\/ */
 
-/*   list_free(&ptr_player, free_in_node); */
-/*   return (EXIT_SUCCESS); */
-/* } */
+
+  tmp = ptr_player.tail;
+  while (tmp)
+    {
+      printf("\n%d-\n", ((t_player *)tmp)->nb);
+      LIST_PREV_NODE(tmp);
+    }
+
+  LIST_FREE(&ptr_player);
+
+  list_free(&ptr_player, free_in_node);
+  return (EXIT_SUCCESS);
+}
+*/
