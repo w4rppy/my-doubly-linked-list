@@ -53,29 +53,29 @@ typedef struct  s_list_int
 
 
 
-// typedef struct s_team
-// {
-//   t_list	team;
-//   int		nbt;
-// }		t_team;
+typedef struct s_team
+{
+  t_list	team;
+  int		nbt;
+}		t_team;
 
-// typedef struct	s_player
-// {
-//   t_list	player;
+typedef struct	s_player
+{
+  t_list	player;
 
-//   int		nb;
-//   t_ptr_list	ptr_team;
-//   t_team	*team;
-  // int		id;
-  // int		lvl;
-  // int		team;
-  // int		goal;
+  int		nb;
+  t_ptr_list	ptr_team;
+  t_team	*team;
+  int		id;
+  int		lvl;
+//  int		team;
+  int		goal;
 
-  // t_direction	direction;
-  // t_vision	*vision;
-  // t_food	food[NB_FOOD];
-  // t_stone	stone[NB_STONE];
-// }		t_player;
+//  t_direction	direction;
+//  t_vision	*vision;
+//  t_food	food[NB_FOOD];
+//  t_stone	stone[NB_STONE];
+}		t_player;
 
 
 
@@ -92,6 +92,7 @@ typedef struct  s_list_int
 # define	LIST_POP_FRONT(b)		list_pop_front((b))
 # define	LIST_POP_BACK(b)		list_pop_back(b)
 # define	LIST_LENGHT(b)			list_lenght(b)
+# define	LIST_FREE(n)			  list_free((n), free_in_node)
 
 // CTRL MACRO
 

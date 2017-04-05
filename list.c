@@ -196,19 +196,19 @@ void		list_free(t_ptr_list *ptr, void (*f)())
   ptr->tail = NULL;
 }
 
-/* bool	get_value(t_list *node, void *data_ref) */
-/* { */
-/*   int	*tmp = data_ref; */
-/*   return (T_PLAYER(node)->nb == *tmp); */
-/* } */
+bool	get_value(t_list *node, void *data_ref)
+{
+  int	*tmp = data_ref;
+  return (T_PLAYER(node)->nb == *tmp);
+}
 
-/* void	free_in_node(t_list *list) */
-/* { */
-/*   /\* if (T_PLAYER(list)->ptr_team.head) *\/ */
-/*   /\* printf("projet %d \n", T_TEAM(list)->nbt); *\/ */
-/*   T_PLAYER(list)->nb = 53; */
-/*   list_free(&(T_PLAYER(list))->ptr_team, NULL); */
-/* } */
+ void	free_in_node(t_list *list)
+{
+  if (T_PLAYER(list)->ptr_team.head)
+  printf("team_number => %d \n", T_TEAM(list)->nbt);
+  T_PLAYER(list)->nb = 53;
+  list_free(&(T_PLAYER(list))->ptr_team, NULL);
+ }
 
 void		free_list_int(t_list *list)
 {
@@ -218,7 +218,7 @@ void		free_list_int(t_list *list)
 }
 
 
-int	main()
+/*int	main()
 {
   t_ptr_list	ptr_lli;
 
@@ -241,8 +241,9 @@ int	main()
   list_free(&(ptr_lli), &free_list_int);
   return 0;
 }
+*/
 
-/*
+
 int	main()
 {
   t_ptr_list	ptr_player;
@@ -254,6 +255,7 @@ int	main()
   i = 0;
 
   LIST_INIT_PTR(&ptr_player);
+  // FILL LIST
   while (i < 10)
     {
       player = malloc(sizeof(*player));
@@ -276,16 +278,16 @@ int	main()
   t_list *tmp;
   while (list)
     {
-      printf("%d-\n", (T_PLAYER(list))->nb);
+      printf("list player_number => %d \n", (T_PLAYER(list))->nb);
       tmp = player->ptr_team.head;
       while (tmp)
       	{
-      	  printf("%d <<<==TOTO\n", (T_TEAM(list))->nbt);
+      	  printf("tmplist team_number => %d \n", (T_PLAYER(tmp))->nb);
       	  LIST_NEXT_NODE(tmp);
       	}
       LIST_NEXT_NODE(list);
     }
-  printf("sizeof list %ld\n", list_lenght(&ptr_player));
+  printf("sizeof list %ld \n", list_lenght(&ptr_player));
 
 
 
@@ -294,19 +296,19 @@ int	main()
   int		k = 3;
   player->nb = 42;
   INSERT_IN_LIST(&ptr_player, player, &k, get_value);
+//  printf("player_number => %d \n", (player->nb);
 
 
-
+// From tail to head
   tmp = ptr_player.tail;
   while (tmp)
     {
-      printf("\n%d-\n", ((t_player *)tmp)->nb);
+      printf("player_number => %d \n", ((t_player *)tmp)->nb);
       LIST_PREV_NODE(tmp);
     }
 
   LIST_FREE(&ptr_player);
+  printf("sizeof list %ld \n", list_lenght(&ptr_player));
 
-  list_free(&ptr_player, free_in_node);
   return (EXIT_SUCCESS);
 }
-*/
